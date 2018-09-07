@@ -1,7 +1,7 @@
 class Shelf{
   int yearUpdated;
   int dayUpdated;//1-365 day of the year
-  int timeNotUpdated = 0;
+  int timeNotUpdated;
   int r;
   int g;
   int b;

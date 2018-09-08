@@ -65,6 +65,14 @@ void mousePressed(){
   
 }
 
-void exit() {
-  
+void exit() { // writes any changes to MapData.txt
+  PrintWriter output = createWriter("MapData.txt");
+  for(int i = 0; i < bookshelfList.size(); i++){
+    output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).shelfName);
+    for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
+      for(int y = 0; y < bookshelfList.get(i).shelfRows; y++){
+        output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated);
+      }
+    }  
+  }
 } 

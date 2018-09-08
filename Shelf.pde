@@ -2,19 +2,17 @@ class Shelf{
   int yearUpdated;
   int dayUpdated;//1-365 day of the year
   int timeNotUpdated;
-  int r;
-  int g;
-  int b;
+  int shade;
     
-  public Shelf(){
-    yearUpdated = Calendar.YEAR;
-    dayUpdated = Calendar.DAY_OF_YEAR;
+  public Shelf(int yearUp, int dayUp){
+    yearUpdated = yearUp;
+    dayUpdated = dayUp;
     
     this.lastUpdated();
-    this.findTint();
+    this.findShade();
   }
   
-  void updateShelf(){ // for when the shelf is sorted
+  void updateShelf(){
     yearUpdated = Calendar.YEAR;
     dayUpdated = Calendar.DAY_OF_YEAR;
     timeNotUpdated = 0;
@@ -24,12 +22,12 @@ class Shelf{
     timeNotUpdated = ((Calendar.YEAR - yearUpdated) * 365) + (Calendar.DAY_OF_YEAR - dayUpdated);
   }
   
-  void findTint(){
+  void findShade(){
     if(50 <= 255 - (timeNotUpdated * 8.5)){
-      r = (int) (255 - (timeNotUpdated * 8.5));
+      shade = (int) (255 - (timeNotUpdated * 8.5));
     }
     else{
-      r = 50;
+      shade = 50;
     }
   }
   

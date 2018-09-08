@@ -13,7 +13,7 @@ import java.util.*;
 
 void setup(){
   size(2000, 1000);
-  output = createWriter("MapData.txt");
+  output = createWriter("MapData.in");
 }
 
 void draw(){
@@ -44,10 +44,10 @@ void keyPressed(){
   }
   else if(key == 's'){
     for(int i = 0; i < bookshelfList.size(); i++){
-      output.println(bookshelfList.get(i).shelfColumns + ", " + bookshelfList.get(i).shelfRows + ", " + bookshelfList.get(i).xPosition + ", " + bookshelfList.get(i).yPosition + ", " + bookshelfList.get(i).xWidth + ", " + bookshelfList.get(i).yHeight + ", " + bookshelfList.get(i).shelfName);
+      output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).shelfName);
       for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
         for(int y = 0; y < bookshelfList.get(i).shelfRows; y++){
-          output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + ", " + bookshelfList.get(i).shelves[x][y].dayUpdated);
+          output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated);
         }
       }
      

@@ -49,20 +49,31 @@ void setup(){
 
 void draw(){
   background(255);
-  System.out.println(bookshelfList.size());
+
   
   fill(0);
   for(int i = 0; i < bookshelfList.size(); i++){
     bookshelfList.get(i).drawBookshelf(); 
   }
+  for(int i = 0; i < bookshelfList.size(); i++){
+    if(bookshelfList.get(i).drawingShelves == true){
+       bookshelfList.get(i).drawShelves();
+    } 
+  }
 }
 
 void keyPressed(){
-  
+  if(key == ESC){
+    for(int i = 0; i < bookshelfList.size(); i++){
+      bookshelfList.get(i).drawingShelves = false; 
+    }
+  }
 }
 
 void mousePressed(){
-  
+  for(int i = 0; i < bookshelfList.size(); i++){
+    bookshelfList.get(i).checkHitbox(); 
+  }
 }
 
 void exit() { // writes any changes to MapData.txt

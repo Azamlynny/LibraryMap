@@ -5,6 +5,7 @@ class Bookshelf {
   int yPosition;
   int xWidth;
   int yHeight;
+  boolean drawingShelves = false;
 
   Shelf[][] shelves;
 
@@ -25,8 +26,14 @@ class Bookshelf {
   }
 
   void drawBookshelf() {
-    //fill func depending on when sorted
+    //fill function depending on when last sorted TODO
     rect(this.xPosition, this.yPosition, this.xWidth, this.yHeight);
+  }
+
+  void checkHitbox(){
+    if(mouseX > xPosition && mouseX < xPosition + xWidth && mouseY > yPosition && mouseY < yPosition + yHeight || mouseX < xPosition && mouseX > xPosition + xWidth && mouseY > yPosition && mouseY < yPosition + yHeight || mouseX > xPosition && mouseX < xPosition + xWidth && mouseY < yPosition && mouseY > yPosition + yHeight || mouseX < xPosition && mouseX > xPosition + xWidth && mouseY < yPosition && mouseY > yPosition + yHeight){
+      this.drawingShelves = true; 
+    }
   }
 
   void drawShelves() {

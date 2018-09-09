@@ -1,3 +1,7 @@
+/* Created by Adam Zamlynny
+   azamlynny@hotmail.com
+*/
+
 class Bookshelf {
   int shelfColumns; 
   int shelfRows;
@@ -11,9 +15,9 @@ class Bookshelf {
 
   Shelf[][] shelves;
 
-  String shelfName = "Shelf_Name";
+  String bookshelfName = "Shelf_Name";
 
-  public Bookshelf(int columns, int rows, int xPos, int yPos, int Width, int Height, String name) {
+  public Bookshelf(int columns, int rows, int xPos, int yPos, int Width, int Height, String shelfName) {
     shelfColumns = columns;
     shelfRows = rows;
  
@@ -24,7 +28,7 @@ class Bookshelf {
     xWidth = Width; 
     yHeight = Height;
 
-    shelfName = name;
+    bookshelfName = shelfName;
   }
 
   void drawBookshelf() {
@@ -37,14 +41,19 @@ class Bookshelf {
     text((int) averageTimeNotUpdated, xPosition + (xWidth / 2), yPosition + (yHeight / 2));
   }
 
-  void checkHitbox(){
+  void checkHitbox(boolean mousePress){
     if(mouseX > xPosition && mouseX < xPosition + xWidth && mouseY > yPosition && mouseY < yPosition + yHeight || mouseX < xPosition && mouseX > xPosition + xWidth && mouseY > yPosition && mouseY < yPosition + yHeight || mouseX > xPosition && mouseX < xPosition + xWidth && mouseY < yPosition && mouseY > yPosition + yHeight || mouseX < xPosition && mouseX > xPosition + xWidth && mouseY < yPosition && mouseY > yPosition + yHeight){
       for(int i = 0; i < bookshelfList.size(); i++){
         if(bookshelfList.get(i).drawingShelves == true){
           break; 
         }
         else if(i == bookshelfList.size() - 1){
-          this.drawingShelves = true;          
+          if(mousePress == true){
+            this.drawingShelves = true;
+          }
+          else{
+            this.drawInfoBox(); 
+          }
         }
       }
     }
@@ -74,6 +83,8 @@ class Bookshelf {
         }
       }
     }
+    
+    drawInfoBox();
   }
   
   void findAverageShade(){
@@ -94,5 +105,15 @@ class Bookshelf {
       }
     }
     averageTimeNotUpdated = totalTimeNotUpdated / (this.shelfColumns * this.shelfRows);
+  }
+  
+  void drawInfoBox(){
+    if(drawingShelves == false){
+      fill(255, 242, 163);
+      rect(10, 10, 200, 30);
+    }
+    textSize(20);
+    fill(0);
+    text(this.bookshelfName, 105, 30);
   }
 }

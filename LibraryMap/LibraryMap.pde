@@ -38,14 +38,6 @@ void setup(){
   catch (IOException ioe){
     ioe.printStackTrace();
   } 
-  
-  //try {
-  //  input.close();
-  //} 
-  //catch (IOException ioe) 
-  //{
-  //  System.out.println("Error in closing the BufferedReader");
-  //}
 }
 
 void draw(){
@@ -54,7 +46,9 @@ void draw(){
   
   for(int i = 0; i < bookshelfList.size(); i++){
     bookshelfList.get(i).drawBookshelf(); 
+    bookshelfList.get(i).checkHitbox(false);
   }
+  
   for(int i = 0; i < bookshelfList.size(); i++){
     if(bookshelfList.get(i).drawingShelves == true){
        bookshelfList.get(i).drawShelves();
@@ -68,41 +62,34 @@ void keyPressed(){
       bookshelfList.get(i).drawingShelves = false; 
     }
   }
-  //else if(key == 's'){
-  //  for(int i = 0; i < bookshelfList.size(); i++){
-  //    output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).shelfName);
-  //    for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
-  //      for(int y = 0; y < bookshelfList.get(i).shelfRows; y++){
-  //        output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated);
-  //      }
-  //    }
-     
-  //  }
-  //}
 }
 
 void mousePressed(){
   for(int i = 0; i < bookshelfList.size(); i++){
-    bookshelfList.get(i).checkHitbox(); // drawingShelves must be false 
+    bookshelfList.get(i).checkHitbox(true); // drawingShelves must be false 
   }
+  
   for(int i = 0; i < bookshelfList.size(); i++){
     if(mouseX > 500 && mouseX < 1500){
       bookshelfList.get(i).shelves[(int) ((bookshelfList.get(i).shelfColumns * (mouseX - 500)) / 1000) ][(int) ((bookshelfList.get(i).shelfRows * (mouseY)) / 1000)].checkHitbox(i);
     }
   }
-
 }
 
 void exit() { // writes any changes to MapData.txt
   PrintWriter output = createWriter("MapData.txt");
+  
   for(int i = 0; i < bookshelfList.size(); i++){
-    output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).shelfName);
+    
+    output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).bookshelfName);
+    
     for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
       for(int y = 0; y < bookshelfList.get(i).shelfRows; y++){
         output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated);
       }
     }  
   }
+  
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
 } 

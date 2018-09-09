@@ -15,12 +15,12 @@ import java.io.*;
 
 void setup(){
   size(2000, 1000);
-  
+  frameRate(60);
   String line = null;
   BufferedReader input = null;
    
   try{ //map input from file
-    input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt"));
+    input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/MapDrawer/MapData.txt"));
     int place = 0;
     line = input.readLine();
     while(line != null){
@@ -66,6 +66,10 @@ void draw(){
   //  key = 0;
   }
   
+  if(selected == true){
+    fill(188, 236, 255, 50);
+    rect(mx1, my1, -(mx1 - mouseX), -(my1 - mouseY)); 
+  }
   
 }
 
@@ -145,7 +149,7 @@ void mousePressed(){
     selected = false;
     mx2 = mouseX;
     my2 = mouseY;
-    bookshelfList.add(new Bookshelf(columnDim, rowDim, mx1, my1, mx2 - mx1, my2 - my1));
+    bookshelfList.add(new Bookshelf(columnDim, rowDim, mx1, my1, mx2 - mx1, my2 - my1, "Shelf_Name"));
   }
 }
 

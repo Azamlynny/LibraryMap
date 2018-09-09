@@ -3,14 +3,15 @@ import java.io.*;
 
 List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
 
+
 void setup(){
   size(2000, 1000);
-  
+  textAlign(CENTER);
   String line = null;
   BufferedReader input = null;
    
   try{ //map input from file
-    input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/MapData.txt"));
+    input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt"));
     int place = 0;
     line = input.readLine();
     while(line != null){
@@ -49,9 +50,8 @@ void setup(){
 
 void draw(){
   background(255);
-
+  key = 'a'; // resets the key value
   
-  fill(0);
   for(int i = 0; i < bookshelfList.size(); i++){
     bookshelfList.get(i).drawBookshelf(); 
   }
@@ -68,12 +68,29 @@ void keyPressed(){
       bookshelfList.get(i).drawingShelves = false; 
     }
   }
+  //else if(key == 's'){
+  //  for(int i = 0; i < bookshelfList.size(); i++){
+  //    output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).shelfName);
+  //    for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
+  //      for(int y = 0; y < bookshelfList.get(i).shelfRows; y++){
+  //        output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated);
+  //      }
+  //    }
+     
+  //  }
+  //}
 }
 
 void mousePressed(){
   for(int i = 0; i < bookshelfList.size(); i++){
-    bookshelfList.get(i).checkHitbox(); 
+    bookshelfList.get(i).checkHitbox(); // drawingShelves must be false 
   }
+  for(int i = 0; i < bookshelfList.size(); i++){
+    if(mouseX > 500 && mouseX < 1500){
+      bookshelfList.get(i).shelves[(int) ((bookshelfList.get(i).shelfColumns * (mouseX - 500)) / 1000) ][(int) ((bookshelfList.get(i).shelfRows * (mouseY)) / 1000)].checkHitbox(i);
+    }
+  }
+
 }
 
 void exit() { // writes any changes to MapData.txt
@@ -86,4 +103,6 @@ void exit() { // writes any changes to MapData.txt
       }
     }  
   }
+  output.flush(); // Writes the remaining data to the file
+  output.close(); // Finishes the file
 } 

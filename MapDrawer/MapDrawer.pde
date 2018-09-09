@@ -13,7 +13,8 @@ import java.util.*;
 
 void setup(){
   size(2000, 1000);
-  output = createWriter("MapData.in");
+  System.out.println(Calendar.DAY_OF_YEAR + " " + Calendar.YEAR);
+  output = createWriter("MapData.txt");
 }
 
 void draw(){
@@ -51,6 +52,13 @@ void keyPressed(){
         }
       }
      
+    }
+  }
+  else if(key == 'd'){
+    for(int i = 0; i < bookshelfList.size(); i++){
+      if(mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight){
+        bookshelfList.remove(i);
+      }
     }
   }
 }

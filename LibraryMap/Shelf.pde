@@ -2,20 +2,27 @@ class Shelf{
   int yearUpdated;
   int dayUpdated;//1-365 day of the year
   int timeNotUpdated;
-  int shade;
+  int shade = 255;
     
   public Shelf(int yearUp, int dayUp){
     yearUpdated = yearUp;
     dayUpdated = dayUp;
     
-    this.lastUpdated();
-    this.findShade();
+    lastUpdated();
+    findShade();
   }
   
   void updateShelf(){
     yearUpdated = Calendar.YEAR;
     dayUpdated = Calendar.DAY_OF_YEAR;
     timeNotUpdated = 0;
+  }
+  
+  void checkHitbox(int bookshelfNum){ // previous logic in mousePressed() determines which Shelf was clicked on 
+    if(bookshelfList.get(bookshelfNum).drawingShelves == true && key == 32){
+      updateShelf();
+    }
+
   }
   
   void lastUpdated(){

@@ -6,6 +6,8 @@ int mx1;
 int mx2;
 int my1;
 int my2;
+boolean kp = false;
+int lastKp = 0;
 
 List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
 
@@ -23,27 +25,58 @@ void draw(){
   text(columnDim + ", " + rowDim, 40, 40);
   
   for(int i = 0; i < bookshelfList.size(); i++){
-    bookshelfList.get(i).drawBookshelf(); 
+    bookshelfList.get(i).drawBookshelf();
+    
+    if(mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight){
+      text(bookshelfList.get(i).shelfName, 40, 80);
+      bookshelfList.get(i).shelfName += "" + key;
+      key = 0;
+    }
+    key = 0;
+  }
+  if(keyPressed && kp == false){
+    kp = true;
+    for(int i = 0; i < bookshelfList.size(); i++){
+     if(mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight){
+        if(key == 5){
+          bookshelfList.get(i).shelfName = ""; 
+        }
+        else if (lastKp == 0){
+          text(bookshelfList.get(i).shelfName, 40, 80);
+          bookshelfList.get(i).shelfName +=  key;
+          key = 0;
+          lastKp += 2;
+        }
+      }
+      key = 0;
+      
+    }
+    
+  }
+  if(lastKp > 0){
+    lastKp -= 1;
   }
 }
 
 void keyPressed(){
-  if(key == 'p'){
+    
+
+  if(key == '2'){
     columnDim++; 
   }
-  else if(key == 'o'){
+  else if(key == '1'){
     columnDim--; 
   }
-  else if(key == 'l'){
+  else if(key == '4'){
     rowDim ++;
   }
-  else if(key == 'k'){ 
+  else if(key == '3'){ 
     rowDim--;
   }
   else if(key == 32){
     selected = false; 
   }
-  else if(key == 's'){
+  else if(key == ENTER){
     for(int i = 0; i < bookshelfList.size(); i++){
       output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).shelfName);
       for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
@@ -54,13 +87,19 @@ void keyPressed(){
      
     }
   }
-  else if(key == 'd'){
+  else if(key == BACKSPACE){
     for(int i = 0; i < bookshelfList.size(); i++){
       if(mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight){
         bookshelfList.remove(i);
       }
     }
   }
+  
+  
+}
+
+void keyReleased(){
+  //kp = false; 
 }
 
 void mousePressed(){

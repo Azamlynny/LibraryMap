@@ -11,14 +11,14 @@ class Bookshelf{
   
   String shelfName = "Shelf_Name";
   
-  public Bookshelf(int columns, int rows, int xPos, int yPos, int Width, int Height){
+  public Bookshelf(int columns, int rows, int xPos, int yPos, int Width, int Height, String name){
     shelfColumns = columns;
     shelfRows = rows;
     shelves = new Shelf[shelfColumns][shelfRows];
     
     for(int x = 0; x < shelfColumns; x++){
       for(int y = 0; y < shelfRows; y++){
-         shelves[x][y] = new Shelf();
+         shelves[x][y] = new Shelf(Calendar.YEAR, Calendar.DAY_OF_YEAR);
       }
     }
     
@@ -27,6 +27,7 @@ class Bookshelf{
     xWidth = Width;
     yHeight = Height;
     
+    shelfName = name;
   }
   
   void drawBookshelf(){

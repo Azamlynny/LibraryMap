@@ -6,9 +6,9 @@ class Shelf{
   int g;
   int b;
     
-  public Shelf(){
-    yearUpdated = Calendar.YEAR;
-    dayUpdated = Calendar.DAY_OF_YEAR;
+  public Shelf(int yearUp, int dayUp){
+    yearUpdated = yearUp; 
+    dayUpdated = dayUp;
     
     this.lastUpdated();
     this.findTint();

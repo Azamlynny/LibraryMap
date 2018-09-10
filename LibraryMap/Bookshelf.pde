@@ -53,7 +53,7 @@ class Bookshelf {
             this.drawingShelves = true;
           }
           else{
-            currentInfoBox = this.bookshelfName;
+            info.currentRangeBox = this.bookshelfName;
             
           }
         }

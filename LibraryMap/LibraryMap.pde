@@ -12,8 +12,6 @@ Information info = new Information();
 Calendar calendar = Calendar.getInstance();
 TimeZone tz = TimeZone.getTimeZone("GMT-04");// EST East Coast of America
 
-String currentInfoBox;
-
 float originalWidth = 1920; // The program was originally made on a 1920x1080 resolution computer
 float originalHeight = 1080;
 float newWidth;             // newWidth and newHeight represent the dimensions of the monitor using the program
@@ -38,12 +36,7 @@ void setup(){
 
 void draw(){
   background(255);
-  
-  for(int i = 0; i < bookshelfList.size(); i++){
-    bookshelfList.get(i).drawBookshelf(); 
-    bookshelfList.get(i).checkHitbox(false);
-  }
-  
+
   info.drawOrientationInfo();
   
   info.drawInstructions(false); 
@@ -51,18 +44,20 @@ void draw(){
   for(int i = 0; i < bookshelfList.size(); i++){
     if(bookshelfList.get(i).drawingShelves == true){
        bookshelfList.get(i).drawShelves();
+       break; //It will draw bookshelves until it finds one that is supposed to be drawing shelves. 
+              //The shelves clear the background and draw over the bookshevlves and break the forloop, causing no more bookshelves to be displayed over it and allowing this to work.
+    }
+    else if(bookshelfList.get(i).drawingShelves == false){
+      bookshelfList.get(i).drawBookshelf(); 
+      bookshelfList.get(i).checkHitbox(false);
     }
   }
-  for(int i = 0; i < bookshelfList.size(); i++){
-    if(bookshelfList.get(i).bookshelfName == currentInfoBox){
-     info.drawRangeBox(bookshelfList.get(i)); 
-      currentInfoBox = ""; //This is so the RangeBox does not remain after the mouse is no longer hovering over it.
-    }
-    
-  }
-
   
-    
+  for(int i = 0; i < bookshelfList.size(); i++){
+    if(bookshelfList.get(i).bookshelfName == info.currentRangeBox){
+      info.drawRangeBox(bookshelfList.get(i)); 
+    } 
+  }
   
 }
 

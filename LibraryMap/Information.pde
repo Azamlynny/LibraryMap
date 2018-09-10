@@ -1,4 +1,5 @@
 class Information{//This is to organize text which tells Instructions or Information
+  String currentRangeBox; //Stores which bookshelf range is displaying the RangeBox so that it may be drawn over Bookshelf objects in the corner of the screen
   
   void drawOrientationInfo(){ //Draws "Landmarks" in the Library to orient the user with their surroundings and the map so they can find the bookshelf they sorted easily.
     textSize(50 * widthRatio); 
@@ -38,8 +39,10 @@ class Information{//This is to organize text which tells Instructions or Informa
       fill(255, 242, 163);
       rect(10 * widthRatio, 10 * heightRatio, 250 * widthRatio, 30 * heightRatio);
     }
-    textSize(20 * widthRatio);
     fill(0);
+    textSize(20 * widthRatio);
     text(bookshelf.bookshelfName, 130 * widthRatio, 30 * heightRatio);
+    
+    info.currentRangeBox = ""; //This is so the RangeBox does not remain after the mouse is no longer hovering over it.
   }
 }

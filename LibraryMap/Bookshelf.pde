@@ -64,7 +64,7 @@ class Bookshelf {
   void drawShelves() {
     background(255, 255, 255);
     
-    drawInstructions(this.drawingShelves);
+    info.drawInstructions(this.drawingShelves);
     
     for (int x = 0; x < shelfColumns; x++) {
       for (int y = 0; y < shelfRows; y++) {
@@ -96,7 +96,7 @@ class Bookshelf {
     }
   
     
-    drawInfoBox();
+    info.drawRangeBox(this); //Passes in this bookshelf object
   }
   
   void findAverageShade(){
@@ -128,13 +128,5 @@ class Bookshelf {
     averageTimeNotUpdated = totalTimeNotUpdated / notEmptyBookshelves;
   }
   
-  void drawInfoBox(){
-    if(drawingShelves == false){
-      fill(255, 242, 163);
-      rect(10 * widthRatio, 10 * heightRatio, 250 * widthRatio, 30* heightRatio);
-    }
-    textSize(20 * widthRatio);
-    fill(0);
-    text(this.bookshelfName, 130 * widthRatio, 30 * heightRatio);
-  }
+  
 }

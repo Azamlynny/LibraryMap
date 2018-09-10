@@ -1,4 +1,4 @@
-class Input{
+class Input{//This is to organize the code which inputs MapData.txt
   
   void inputMapData(){
     String line = null;

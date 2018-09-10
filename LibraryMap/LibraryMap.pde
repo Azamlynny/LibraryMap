@@ -146,7 +146,7 @@ void drawInstructions(boolean shelvesDrawn){
   textAlign(LEFT);
   if(shelvesDrawn == true){
     textSize(40 * widthRatio);
-    text("Instructions:", 50 * widthRatio, 100);
+    text("Instructions:", 50 * widthRatio, 100 * heightRatio);
     textSize(23 * widthRatio);
     text("Hold 'Space' down and click on a", 50 * widthRatio, 150 * heightRatio);
     text("shelf to reset the day last sorted.", 50 * widthRatio, 180 * heightRatio);
@@ -160,9 +160,9 @@ void drawInstructions(boolean shelvesDrawn){
     textSize(40 * widthRatio);
     text("Instructions:", 50 * widthRatio, 880 * heightRatio);
     textSize(30 * widthRatio);
-    text("Click on a bookshelf to see each individual shelf and when it was last sorted.", 50, 920);
+    text("Click on a bookshelf to see each individual shelf and when it was last sorted.", 50 * widthRatio, 920 * heightRatio);
     textSize(25 * widthRatio);
-    text("The number displayed on a bookshelf is the average amount of days when the shelves on it were last sorted", 50, 960);
+    text("The number displayed on a bookshelf is the average amount of days when the shelves on it were last sorted", 50 * widthRatio, 960 * heightRatio);
   }
   textAlign(CENTER);
 }

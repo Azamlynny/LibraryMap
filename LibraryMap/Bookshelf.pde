@@ -100,24 +100,31 @@ class Bookshelf {
   
   void findAverageShade(){
     float totalShade = 0;
+    float notEmptyBookshelves = 0;
     for(int x = 0; x < this.shelfColumns; x++){
       for(int y = 0; y < this.shelfRows; y++){
-        totalShade += this.shelves[x][y].shade;
+        if(shelves[x][y].hasBooks == true){
+          totalShade += this.shelves[x][y].shade;
+          notEmptyBookshelves++;
+        }
       }
     }
-    averageShade = totalShade / (this.shelfColumns * this.shelfRows);
+    averageShade = totalShade / notEmptyBookshelves;
   }
   
   void findAverageTimeNotUpdated(){
     float totalTimeNotUpdated = 0;
+    int notEmptyBookshelves = 0;
+     
     for(int x = 0; x < this.shelfColumns; x++){
       for(int y = 0; y < this.shelfRows; y++){
         if(shelves[x][y].hasBooks == true){
           totalTimeNotUpdated += shelves[x][y].timeNotUpdated; 
+          notEmptyBookshelves++;
         }
       }
     }
-    averageTimeNotUpdated = totalTimeNotUpdated / (this.shelfColumns * this.shelfRows);
+    averageTimeNotUpdated = totalTimeNotUpdated / notEmptyBookshelves;
   }
   
   void drawInfoBox(){

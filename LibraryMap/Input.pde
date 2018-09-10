@@ -1,6 +1,6 @@
 class Input{//This is to organize the code which inputs MapData.txt
   
-  void inputMapData(){
+  public Input(){
     String line = null;
     BufferedReader input = null;
      

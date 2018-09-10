@@ -33,8 +33,7 @@ void setup(){
   widthRatio = newWidth/originalWidth;
   heightRatio = newHeight/originalHeight;
   
-  Input inputData = new Input();
-  inputData.inputMapData(); // Turns MapData.txt into Bookshelf and Shelf objects
+  Input inputData = new Input(); // Constructor inputs MapData.txt and makes objects from it
 }
 
 void draw(){
@@ -92,22 +91,8 @@ void mousePressed(){
   }
 }
 
-void exit() { // writes any changes to MapData.txt
-  PrintWriter output = createWriter("MapData.txt");
+void exit() { 
+  Output output = new Output(); //Constructor outputs the objects data to MapData.txt
   
-  for(int i = 0; i < bookshelfList.size(); i++){
-    
-    output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).bookshelfName);
-    
-    for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
-      for(int y = 0; y < bookshelfList.get(i).shelfRows; y++){
-        output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated + " " + bookshelfList.get(i).shelves[x][y].hasBooks);
-      }
-    }  
-  }
-  
-  output.flush(); // Writes the remaining data to the file
-  output.close(); // Finishes the file
-  
-  System.exit(0);
+  System.exit(0); //Makes sure the file closes because otherwise it will run in the background and create lag on the computer
 } 

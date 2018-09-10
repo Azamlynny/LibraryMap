@@ -13,8 +13,8 @@ class Shelf{
   }
   
   void updateShelf(){
-    yearUpdated = Calendar.YEAR;
-    dayUpdated = Calendar.DAY_OF_YEAR;
+    yearUpdated = calendar.get(Calendar.YEAR);
+    dayUpdated = calendar.get(Calendar.DAY_OF_YEAR);
     timeNotUpdated = 0;
   }
   
@@ -26,7 +26,7 @@ class Shelf{
   }
   
   void lastUpdated(){
-    timeNotUpdated = ((Calendar.YEAR - yearUpdated) * 365) + (Calendar.DAY_OF_YEAR - dayUpdated);
+    timeNotUpdated = ((calendar.get(Calendar.YEAR) - yearUpdated) * 365) + (calendar.get(Calendar.DAY_OF_YEAR) - dayUpdated);
   }
   
   void findShade(){

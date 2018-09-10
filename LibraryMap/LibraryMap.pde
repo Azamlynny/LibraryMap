@@ -1,11 +1,19 @@
+/* Created by Adam Zamlynny
+   azamlynny@hotmail.com
+*/
 import java.util.*;
 import java.io.*;
 
 List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
 
+Calendar calendar = Calendar.getInstance();
+TimeZone tz = TimeZone.getTimeZone("GMT-04");
 
 void setup(){
   size(2000, 1000);
+  
+  calendar.setTimeZone(tz);
+  
   textAlign(CENTER);
   String line = null;
   BufferedReader input = null;
@@ -15,14 +23,11 @@ void setup(){
     int place = 0;
     line = input.readLine();
     while(line != null){
-    //for(int i = 0; i < 1; i++){
 
       StringTokenizer bookData = new StringTokenizer(line);
       
-      bookshelfList.add(new Bookshelf(Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), bookData.nextToken()));
+      bookshelfList.add(new Bookshelf(Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), bookData.nextToken(" ")));
       
-      
-      //System.out.println(shelfData.nextToken() + " " + shelfData.nextToken());
       for(int x = 0; x < bookshelfList.get(place).shelfColumns; x++){
         for(int y = 0; y < bookshelfList.get(place).shelfRows; y++){
           //System.out.println(bookshelfList.get(place).shelves[0][0].yearUpdated);
@@ -42,8 +47,6 @@ void setup(){
 
 void draw(){
   background(255);
-  key = 'a'; // resets the key value
-  
   for(int i = 0; i < bookshelfList.size(); i++){
     bookshelfList.get(i).drawBookshelf(); 
     bookshelfList.get(i).checkHitbox(false);
@@ -62,6 +65,10 @@ void keyPressed(){
       bookshelfList.get(i).drawingShelves = false; 
     }
   }
+}
+
+void keyReleased(){
+  key = 'a'; // resets the key value 
 }
 
 void mousePressed(){

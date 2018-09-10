@@ -8,6 +8,8 @@ int my1;
 int my2;
 boolean kp = false;
 
+Calendar calendar = Calendar.getInstance();
+
 List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
 
 import java.util.*;

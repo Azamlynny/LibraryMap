@@ -20,7 +20,8 @@ void setup(){
   BufferedReader input = null;
    
   try{ //map input from file
-    input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt"));
+    //input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt")); // this is for my computer,
+    input = new BufferedReader(new FileReader("C:/Users/Public05/Documents/Processing/Library Map/Do Not Delete/MapData.txt"));//directory for library computer
     int place = 0;
     line = input.readLine();
     while(line != null){

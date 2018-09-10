@@ -21,7 +21,7 @@ void setup(){
    
   try{ //map input from file
     //input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt")); // this is for my computer,
-    input = new BufferedReader(new FileReader("C:/Users/Public05/Documents/Processing/Library Map/Do Not Delete/MapData.txt"));//directory for library computer
+    input = new BufferedReader(new FileReader("C:/Users/Public05/Documents/Processing/Library_Map/Do_Not_Delete/MapData.txt"));//directory for library computer
     int place = 0;
     line = input.readLine();
     while(line != null){
@@ -121,6 +121,8 @@ void exit() { // writes any changes to MapData.txt
   
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
+  
+  System.exit(0);
 } 
 
 void drawInstructions(boolean shelvesDrawn){

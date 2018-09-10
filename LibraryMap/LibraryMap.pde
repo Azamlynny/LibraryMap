@@ -8,6 +8,7 @@ List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
 
 Calendar calendar = Calendar.getInstance();
 TimeZone tz = TimeZone.getTimeZone("GMT-04");
+String currentInfoBox;
 
 void setup(){
   size(2000, 1000);
@@ -32,7 +33,7 @@ void setup(){
         for(int y = 0; y < bookshelfList.get(place).shelfRows; y++){
           //System.out.println(bookshelfList.get(place).shelves[0][0].yearUpdated);
           StringTokenizer shelfData = new StringTokenizer(input.readLine());
-          bookshelfList.get(place).shelves[x][y] = new Shelf(Integer.parseInt(shelfData.nextToken()), Integer.parseInt(shelfData.nextToken()));
+          bookshelfList.get(place).shelves[x][y] = new Shelf(Integer.parseInt(shelfData.nextToken()), Integer.parseInt(shelfData.nextToken()), Boolean.parseBoolean(shelfData.nextToken()));
         }
       }
       place++;
@@ -56,6 +57,13 @@ void draw(){
     if(bookshelfList.get(i).drawingShelves == true){
        bookshelfList.get(i).drawShelves();
     } 
+  }
+  for(int i = 0; i < bookshelfList.size(); i++){
+    if(bookshelfList.get(i).bookshelfName == currentInfoBox){
+      bookshelfList.get(i).drawInfoBox(); 
+      currentInfoBox = "";
+    }
+    
   }
 }
 
@@ -92,7 +100,7 @@ void exit() { // writes any changes to MapData.txt
     
     for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){
       for(int y = 0; y < bookshelfList.get(i).shelfRows; y++){
-        output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated);
+        output.println(bookshelfList.get(i).shelves[x][y].yearUpdated + " " + bookshelfList.get(i).shelves[x][y].dayUpdated + " " + bookshelfList.get(i).shelves[x][y].hasBooks);
       }
     }  
   }

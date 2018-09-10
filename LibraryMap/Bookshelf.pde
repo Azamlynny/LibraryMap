@@ -52,7 +52,8 @@ class Bookshelf {
             this.drawingShelves = true;
           }
           else{
-            this.drawInfoBox(); 
+            currentInfoBox = this.bookshelfName;
+            
           }
         }
       }
@@ -63,26 +64,33 @@ class Bookshelf {
     background(255, 255, 255);
     for (int x = 0; x < shelfColumns; x++) {
       for (int y = 0; y < shelfRows; y++) {
-        shelves[x][y].lastUpdated();
-        shelves[x][y].findShade();
-        fill(shelves[x][y].shade);
-        //System.out.println(shelves[x][y].shade);
+        if(shelves[x][y].hasBooks == true){
+          shelves[x][y].lastUpdated();
+          shelves[x][y].findShade();
+          fill(shelves[x][y].shade);
+          //System.out.println(shelves[x][y].shade);
+          rect(500 + ((1000 / this.shelfColumns) * x), (1000 / this.shelfRows) * y, 1000 / this.shelfColumns, 1000 / this.shelfRows);
+          if(shelves[x][y].shade < 100){
+            fill(255);
+          }
+          else{
+            fill(0);
+          }
+          textSize(90/this.shelfColumns);
+          if(shelves[x][y].timeNotUpdated != 1){ // plural days
+            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " days", 500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2), ((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2));
+          }
+          else{
+            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " day", 500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2), ((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2));
+          }
+        }
+        else if(shelves[x][y].hasBooks == false){ // if the bookshelf has no books on it then display it as red and do not display when it was sorted last.
+        fill(255,0,0);
         rect(500 + ((1000 / this.shelfColumns) * x), (1000 / this.shelfRows) * y, 1000 / this.shelfColumns, 1000 / this.shelfRows);
-        if(shelves[x][y].shade < 100){
-          fill(255);
-        }
-        else{
-          fill(0);
-        }
-        textSize(90/this.shelfColumns);
-        if(shelves[x][y].timeNotUpdated != 1){ // plural days
-          text("Unsorted for: " + shelves[x][y].timeNotUpdated + " days", 500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2), ((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2));
-        }
-        else{
-          text("Unsorted for: " + shelves[x][y].timeNotUpdated + " day", 500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2), ((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2));
         }
       }
     }
+  
     
     drawInfoBox();
   }
@@ -110,10 +118,10 @@ class Bookshelf {
   void drawInfoBox(){
     if(drawingShelves == false){
       fill(255, 242, 163);
-      rect(10, 10, 200, 30);
+      rect(10, 10, 250, 30);
     }
     textSize(20);
     fill(0);
-    text(this.bookshelfName, 105, 30);
+    text(this.bookshelfName, 130, 30);
   }
 }

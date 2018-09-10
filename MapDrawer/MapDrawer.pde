@@ -58,7 +58,9 @@ void draw(){
   for(int i = 0; i < bookshelfList.size(); i++){
     bookshelfList.get(i).drawBookshelf();
     if(mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight){
-        text(bookshelfList.get(i).shelfName, 40, 80);
+      
+      
+      text(bookshelfList.get(i).shelfName, 40, 800);
     }
   //  if(mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY > bookshelfList.get(i).yPosition && mouseY < bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX > bookshelfList.get(i).xPosition && mouseX < bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight || mouseX < bookshelfList.get(i).xPosition && mouseX > bookshelfList.get(i).xPosition + bookshelfList.get(i).xWidth && mouseY < bookshelfList.get(i).yPosition && mouseY > bookshelfList.get(i).yPosition + bookshelfList.get(i).yHeight){
   //    text(bookshelfList.get(i).shelfName, 40, 80);
@@ -95,6 +97,7 @@ void keyPressed(){
     selected = false; 
   }
   else if(key == ENTER){
+    output = createWriter("MapData.txt");
     for(int i = 0; i < bookshelfList.size(); i++){
       output.println(bookshelfList.get(i).shelfColumns + " " + bookshelfList.get(i).shelfRows + " " + bookshelfList.get(i).xPosition + " " + bookshelfList.get(i).yPosition + " " + bookshelfList.get(i).xWidth + " " + bookshelfList.get(i).yHeight + " " + bookshelfList.get(i).shelfName);
       for(int x = 0; x < bookshelfList.get(i).shelfColumns; x++){

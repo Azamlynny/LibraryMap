@@ -18,7 +18,7 @@ class Bookshelf{
     
     for(int x = 0; x < shelfColumns; x++){
       for(int y = 0; y < shelfRows; y++){
-         shelves[x][y] = new Shelf(calendar.YEAR, calendar.DAY_OF_YEAR);
+         shelves[x][y] = new Shelf(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
       }
     }
     

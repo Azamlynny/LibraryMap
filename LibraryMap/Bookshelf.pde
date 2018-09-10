@@ -1,5 +1,6 @@
 /* Created by Adam Zamlynny
    azamlynny@hotmail.com
+   github.com/Azamlynny
 */
 
 class Bookshelf {

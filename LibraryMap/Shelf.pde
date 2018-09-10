@@ -1,3 +1,8 @@
+/* Created by Adam Zamlynny
+   azamlynny@hotmail.com
+   github.com/Azamlynny
+*/
+
 class Shelf{
   int yearUpdated;
   int dayUpdated;//1-365 day of the year

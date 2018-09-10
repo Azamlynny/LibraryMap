@@ -1,67 +1,39 @@
 /* Created by Adam Zamlynny
    azamlynny@hotmail.com
+   github.com/Azamlynny
 */
-import java.util.*;
-import java.io.*;
+
+import java.util.*; // for ArrayList and list
+import java.io.*; // for Calendar
 
 List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
 
 Calendar calendar = Calendar.getInstance();
-TimeZone tz = TimeZone.getTimeZone("GMT-04");
+TimeZone tz = TimeZone.getTimeZone("GMT-04");// EST East Coast of America
+
 String currentInfoBox;
-float originalWidth = 1920;
+
+float originalWidth = 1920; // The program was originally made on a 1920x1080 resolution computer
 float originalHeight = 1080;
-float newWidth;
+float newWidth;            // newWidth and newHeight represent the dimensions of the monitor using the program
 float newHeight;
-float widthRatio;
+float widthRatio;          // Every calculation using distance or any size is multiplied by these ratios
 float heightRatio;
 
-
-void settings(){
-  size(displayWidth, displayHeight); 
-  
+void settings(){ // This runs before void setup()
+  size(displayWidth, displayHeight); //Sets the size to the resolution of the computer so that later on everything is scaled to it.
 }
   
 void setup(){
-  //size(2000, 1000);
-   newWidth = displayWidth;
-   newHeight = displayHeight;
-   widthRatio = newWidth/originalWidth;
-   heightRatio = newHeight/originalHeight;
-   
-  calendar.setTimeZone(tz);
+  calendar.setTimeZone(tz); // Changes timezone from GMT to EST
   
-  textAlign(CENTER);
-  String line = null;
-  BufferedReader input = null;
-   
-  try{ //map input from file
-    input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt")); // this is for my computer,
-    //input = new BufferedReader(new FileReader("C:/Users/Public05/Documents/Processing/Library_Map/application.windows64/MapData.txt"));//directory for library computer
-    //input = new BufferedReader(new FileReader("MapData.txt"));
-    int place = 0;
-    line = input.readLine();
-    while(line != null){
-
-      StringTokenizer bookData = new StringTokenizer(line);
-      
-      bookshelfList.add(new Bookshelf(Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), bookData.nextToken(" ")));
-      
-      for(int x = 0; x < bookshelfList.get(place).shelfColumns; x++){
-        for(int y = 0; y < bookshelfList.get(place).shelfRows; y++){
-          //System.out.println(bookshelfList.get(place).shelves[0][0].yearUpdated);
-          StringTokenizer shelfData = new StringTokenizer(input.readLine());
-          bookshelfList.get(place).shelves[x][y] = new Shelf(Integer.parseInt(shelfData.nextToken()), Integer.parseInt(shelfData.nextToken()), Boolean.parseBoolean(shelfData.nextToken()));
-        }
-      }
-      place++;
-      line = input.readLine();
-    }
-      
-  }
-  catch (IOException ioe){
-    ioe.printStackTrace();
-  } 
+  newWidth = displayWidth;
+  newHeight = displayHeight;
+  widthRatio = newWidth/originalWidth;
+  heightRatio = newHeight/originalHeight;
+  
+  Input inputData = new Input();
+  inputData.inputMapData(); // Turns MapData.txt into Bookshelf and Shelf objects
 }
 
 void draw(){

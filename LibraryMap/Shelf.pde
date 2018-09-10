@@ -30,7 +30,9 @@ class Shelf{
           hasBooks = false; 
         }
         else{
-          hasBooks = true; 
+          hasBooks = true;
+          yearUpdated = calendar.get(Calendar.YEAR);
+          dayUpdated = calendar.get(Calendar.DAY_OF_YEAR);
         }
       }
     }

@@ -38,7 +38,7 @@ class Bookshelf {
     textSize(30);
     fill(0);
     findAverageTimeNotUpdated();
-    text((int) averageTimeNotUpdated, xPosition + (xWidth / 2), yPosition + (yHeight / 2));
+    text((int) averageTimeNotUpdated, xPosition + (xWidth / 2), yPosition + (yHeight / 2) + 10);
   }
 
   void checkHitbox(boolean mousePress){
@@ -62,6 +62,9 @@ class Bookshelf {
 
   void drawShelves() {
     background(255, 255, 255);
+    
+    drawInstructions(this.drawingShelves);
+    
     for (int x = 0; x < shelfColumns; x++) {
       for (int y = 0; y < shelfRows; y++) {
         if(shelves[x][y].hasBooks == true){
@@ -109,7 +112,9 @@ class Bookshelf {
     float totalTimeNotUpdated = 0;
     for(int x = 0; x < this.shelfColumns; x++){
       for(int y = 0; y < this.shelfRows; y++){
-        totalTimeNotUpdated += shelves[x][y].timeNotUpdated; 
+        if(shelves[x][y].hasBooks == true){
+          totalTimeNotUpdated += shelves[x][y].timeNotUpdated; 
+        }
       }
     }
     averageTimeNotUpdated = totalTimeNotUpdated / (this.shelfColumns * this.shelfRows);

@@ -53,10 +53,18 @@ void draw(){
     bookshelfList.get(i).checkHitbox(false);
   }
   
+  textSize(50); //Everything past here is just to orientate the Map for people
+  text("Tables Area", 350, 700);
+  textSize(30);
+  text("Volunteer Desk", 1750, 700);
+  text("Children's Area", 1750, 300);//end of orientation text
+  
+  drawInstructions(false); 
+  
   for(int i = 0; i < bookshelfList.size(); i++){
     if(bookshelfList.get(i).drawingShelves == true){
        bookshelfList.get(i).drawShelves();
-    } 
+    }
   }
   for(int i = 0; i < bookshelfList.size(); i++){
     if(bookshelfList.get(i).bookshelfName == currentInfoBox){
@@ -65,7 +73,12 @@ void draw(){
     }
     
   }
+
+  
+    
+  
 }
+
 
 void keyPressed(){
   if(key == ESC){
@@ -108,3 +121,27 @@ void exit() { // writes any changes to MapData.txt
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
 } 
+
+void drawInstructions(boolean shelvesDrawn){
+  textAlign(LEFT);
+  if(shelvesDrawn == true){
+    textSize(40);
+    text("Instructions:", 50, 100);
+    textSize(23);
+    text("Hold 'Space' down and click on a", 50, 150);
+    text("shelf to reset the day last sorted.", 50, 180);
+    text("Hold 'Enter' down and click on a shelf", 50, 230);
+    text("to toggle whether it has books on it.", 50, 260);
+    text("Shelves that appear red mean the", 50, 310);
+    text("bookshelf viewed has no books on it.", 50, 340);
+  }
+  else if(shelvesDrawn == false){
+    textSize(40);
+    text("Instructions:", 50, 880);
+    textSize(30);
+    text("Click on a bookshelf to see each individual shelf and when it was last sorted.", 50, 920);
+    textSize(25);
+    text("The number displayed on a bookshelf is the average amount of days when the shelves on it were last sorted", 50, 960);
+  }
+  textAlign(CENTER);
+}

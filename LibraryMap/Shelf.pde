@@ -44,8 +44,8 @@ class Shelf{
   }
   
   void findShade(){
-    if(50 <= 255 - (timeNotUpdated * 8.5)){
-      shade = (int) (255 - (timeNotUpdated * 8.5));
+    if(50 <= 255 - (timeNotUpdated * 2)){
+      shade = (int) (255 - (timeNotUpdated * 2));
     }
     else{
       shade = 50;

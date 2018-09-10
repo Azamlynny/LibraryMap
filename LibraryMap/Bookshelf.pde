@@ -34,15 +34,15 @@ class Bookshelf {
   void drawBookshelf() {
     findAverageShade();
     fill(averageShade);
-    rect(this.xPosition, this.yPosition, this.xWidth, this.yHeight);
-    textSize(30);
+    rect(this.xPosition * widthRatio, this.yPosition * heightRatio, this.xWidth * widthRatio, this.yHeight * heightRatio);
+    textSize(30 * widthRatio);
     fill(0);
     findAverageTimeNotUpdated();
-    text((int) averageTimeNotUpdated, xPosition + (xWidth / 2), yPosition + (yHeight / 2) + 10);
+    text((int) averageTimeNotUpdated, (xPosition + (xWidth / 2)) * widthRatio, (yPosition + (yHeight / 2) + 10) * widthRatio);
   }
 
   void checkHitbox(boolean mousePress){
-    if(mouseX > xPosition && mouseX < xPosition + xWidth && mouseY > yPosition && mouseY < yPosition + yHeight || mouseX < xPosition && mouseX > xPosition + xWidth && mouseY > yPosition && mouseY < yPosition + yHeight || mouseX > xPosition && mouseX < xPosition + xWidth && mouseY < yPosition && mouseY > yPosition + yHeight || mouseX < xPosition && mouseX > xPosition + xWidth && mouseY < yPosition && mouseY > yPosition + yHeight){
+    if(mouseX > xPosition * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX > xPosition  * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio){
       for(int i = 0; i < bookshelfList.size(); i++){
         if(bookshelfList.get(i).drawingShelves == true){
           break; 
@@ -72,24 +72,24 @@ class Bookshelf {
           shelves[x][y].findShade();
           fill(shelves[x][y].shade);
           //System.out.println(shelves[x][y].shade);
-          rect(500 + ((1000 / this.shelfColumns) * x), (1000 / this.shelfRows) * y, 1000 / this.shelfColumns, 1000 / this.shelfRows);
+          rect((500 + ((1000 / this.shelfColumns) * x)) * widthRatio, ((1000 / this.shelfRows) * y) * heightRatio, (1000 / this.shelfColumns) * widthRatio, (1000 / this.shelfRows) * heightRatio);
           if(shelves[x][y].shade < 100){
             fill(255);
           }
           else{
             fill(0);
           }
-          textSize(90/this.shelfColumns);
+          textSize((90/this.shelfColumns) * widthRatio);
           if(shelves[x][y].timeNotUpdated != 1){ // plural days
-            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " days", 500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2), ((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2));
+            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " days", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
           }
           else{
-            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " day", 500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2), ((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2));
+            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " day", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
           }
         }
         else if(shelves[x][y].hasBooks == false){ // if the bookshelf has no books on it then display it as red and do not display when it was sorted last.
         fill(255,0,0);
-        rect(500 + ((1000 / this.shelfColumns) * x), (1000 / this.shelfRows) * y, 1000 / this.shelfColumns, 1000 / this.shelfRows);
+        rect((500 + ((1000 / this.shelfColumns) * x)) * widthRatio, ((1000 / this.shelfRows) * y) * heightRatio, (1000 / this.shelfColumns) * widthRatio, (1000 / this.shelfRows) * heightRatio);
         }
       }
     }
@@ -123,10 +123,10 @@ class Bookshelf {
   void drawInfoBox(){
     if(drawingShelves == false){
       fill(255, 242, 163);
-      rect(10, 10, 250, 30);
+      rect(10 * widthRatio, 10 * heightRatio, 250 * widthRatio, 30* heightRatio);
     }
-    textSize(20);
+    textSize(20 * widthRatio);
     fill(0);
-    text(this.bookshelfName, 130, 30);
+    text(this.bookshelfName, 130 * widthRatio, 30 * heightRatio);
   }
 }

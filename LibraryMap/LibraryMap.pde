@@ -70,8 +70,8 @@ void keyPressed(){
   }
 }
 
-void keyReleased(){
-  key = 'a'; // resets the key value 
+void keyReleased(){ // keyReleased() is used so that buttons may be held down and then the mouse can click in combination.
+  key = 0; // Gives the key value a value of Null so that key is not equal to a character when not being pressed.
 }
 
 void mousePressed(){
@@ -87,7 +87,7 @@ void mousePressed(){
 }
 
 void exit() { 
-  Output output = new Output(); //Constructor outputs the objects data to MapData.txt
+  Output output = new Output("MapData.txt"); //Constructor outputs the objects data to MapData.txt, which will be in the same directory as the program.
   
   System.exit(0); //Makes sure the file closes because otherwise it will run in the background and create lag on the computer
 } 

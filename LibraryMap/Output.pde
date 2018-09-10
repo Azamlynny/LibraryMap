@@ -1,7 +1,7 @@
 class Output{//This is to organize the code which outputs to MapData.txt any changes that have happened to the data while the program was in use
   
-  public Output(){
-    PrintWriter output = createWriter("MapData.txt");
+  public Output(String location){ //Location is here so that if wanted, MapData.txt can be printed to a normal location and then a backup folder.
+    PrintWriter output = createWriter(location); 
   
     for(int i = 0; i < bookshelfList.size(); i++){
       //Writes the data of a Bookshelf object (int shelfColumns, int shelfRows, int xPosition, int yPosition, int xWidth, int yHeight, String bookshelfName)

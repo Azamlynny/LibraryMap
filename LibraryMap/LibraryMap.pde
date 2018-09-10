@@ -134,6 +134,7 @@ void drawInstructions(boolean shelvesDrawn){
     text("to toggle whether it has books on it.", 50, 260);
     text("Shelves that appear red mean the", 50, 310);
     text("bookshelf viewed has no books on it.", 50, 340);
+    text("Press 'Escape' to exit the bookshelf.", 50, 390);
   }
   else if(shelvesDrawn == false){
     textSize(40);

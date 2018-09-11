@@ -12,7 +12,6 @@ class Map{
     this.drawObjects();
     
     this.drawRangeBox();
-     
   }
   
   void drawObjects(){

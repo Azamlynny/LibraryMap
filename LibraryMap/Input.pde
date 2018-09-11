@@ -1,3 +1,7 @@
+/* Created by Adam Zamlynny
+   azamlynny@hotmail.com
+   github.com/Azamlynny
+*/
 class Input{//This is to organize the code which inputs MapData.txt
   
   public Input(){
@@ -16,14 +20,14 @@ class Input{//This is to organize the code which inputs MapData.txt
         StringTokenizer bookData = new StringTokenizer(line);
         
         //Creates Bookshelf objects
-        bookshelfList.add(new Bookshelf(Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), bookData.nextToken(" ")));
+        map.bookshelfList.add(new Bookshelf(Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), Integer.parseInt(bookData.nextToken()), bookData.nextToken(" ")));
         
-        for(int x = 0; x < bookshelfList.get(bookshelfList.size() - 1).shelfColumns; x++){
-          for(int y = 0; y < bookshelfList.get(bookshelfList.size() - 1).shelfRows; y++){
+        for(int x = 0; x < map.bookshelfList.get(map.bookshelfList.size() - 1).shelfColumns; x++){
+          for(int y = 0; y < map.bookshelfList.get(map.bookshelfList.size() - 1).shelfRows; y++){
             StringTokenizer shelfData = new StringTokenizer(input.readLine());
             
             //Creates Shelf objects
-            bookshelfList.get(bookshelfList.size() - 1).shelves[x][y] = new Shelf(Integer.parseInt(shelfData.nextToken()), Integer.parseInt(shelfData.nextToken()), Boolean.parseBoolean(shelfData.nextToken()));
+            map.bookshelfList.get(map.bookshelfList.size() - 1).shelves[x][y] = new Shelf(Integer.parseInt(shelfData.nextToken()), Integer.parseInt(shelfData.nextToken()), Boolean.parseBoolean(shelfData.nextToken()));
           }
         }
         

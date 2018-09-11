@@ -44,11 +44,11 @@ class Bookshelf {
 
   void checkHitbox(boolean mousePress){
     if(mouseX > xPosition * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX > xPosition  * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio){
-      for(int i = 0; i < bookshelfList.size(); i++){
-        if(bookshelfList.get(i).drawingShelves == true){
+      for(int i = 0; i < map.bookshelfList.size(); i++){
+        if(map.bookshelfList.get(i).drawingShelves == true){
           break; 
         }
-        else if(i == bookshelfList.size() - 1){
+        else if(i == map.bookshelfList.size() - 1){
           if(mousePress == true){
             this.drawingShelves = true;
           }
@@ -89,8 +89,10 @@ class Bookshelf {
           }
         }
         else if(shelves[x][y].hasBooks == false){ // if the bookshelf has no books on it then display it as red and do not display when it was sorted last.
-        fill(255,0,0);
+        fill(211, 247, 255);
         rect((500 + ((1000 / this.shelfColumns) * x)) * widthRatio, ((1000 / this.shelfRows) * y) * heightRatio, (1000 / this.shelfColumns) * widthRatio, (1000 / this.shelfRows) * heightRatio);
+        fill(0);
+        text("Empty Shelf", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
         }
       }
     }

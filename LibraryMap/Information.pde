@@ -1,3 +1,7 @@
+/* Created by Adam Zamlynny
+   azamlynny@hotmail.com
+   github.com/Azamlynny
+*/
 class Information{//This is to organize text which tells Instructions or Information
   String currentRangeBox; //Stores which bookshelf range is displaying the RangeBox so that it may be drawn over Bookshelf objects in the corner of the screen
   
@@ -19,8 +23,8 @@ class Information{//This is to organize text which tells Instructions or Informa
       text("shelf to reset the day last sorted.", 50 * widthRatio, 180 * heightRatio);
       text("Hold 'Enter' down and click on a shelf", 50 * widthRatio, 230 * heightRatio);  // new text paragraph is 50 pixels apart
       text("to toggle whether it has books on it.", 50 * widthRatio, 260 * heightRatio);
-      text("Shelves that appear red mean the", 50 * widthRatio, 310 * heightRatio);
-      text("bookshelf viewed has no books on it.", 50 * widthRatio, 340 * heightRatio);
+      text("Shelves that appear light blue mean", 50 * widthRatio, 310 * heightRatio);
+      text("the shelf has no books on it.", 50 * widthRatio, 340 * heightRatio);
       text("Press 'q' to exit the bookshelf.", 50 * widthRatio, 390 * heightRatio);
     }
     else if(shelvesDrawn == false){

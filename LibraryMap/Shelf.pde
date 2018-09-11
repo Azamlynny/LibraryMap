@@ -26,7 +26,7 @@ class Shelf{
   }
   
   void checkHitbox(int bookshelfNum){ // previous logic in mousePressed() determines which Shelf was clicked on 
-    if(bookshelfList.get(bookshelfNum).drawingShelves == true){
+    if(map.bookshelfList.get(bookshelfNum).drawingShelves == true){
       if(key == 32){
         updateShelf();
       }

@@ -21,24 +21,24 @@ class Bookshelf {
   public Bookshelf(int columns, int rows, int xPos, int yPos, int Width, int Height, String shelfName) {
     shelfColumns = columns;
     shelfRows = rows;
- 
-    shelves = new Shelf[shelfColumns][shelfRows];
-
     xPosition = xPos;
     yPosition = yPos;
     xWidth = Width; 
     yHeight = Height;
-
-    bookshelfName = shelfName;
+    bookshelfName = shelfName; // This is also the bookshelf range, the range of books a bookshelf holds
+  
+    shelves = new Shelf[shelfColumns][shelfRows];
   }
 
   void drawBookshelf() {
-    findAverageShade();
+    findAverageInfo(); //Findes averageSahde and averageTimeNotUpdated
+    // for finding the color and the drawing of the bookshelf depending on the average shade of all shelves
     fill(averageShade);
     rect(this.xPosition * widthRatio, this.yPosition * heightRatio, this.xWidth * widthRatio, this.yHeight * heightRatio);
+    
+    //For the number that displays on the bookshelf showing the average time not sorted of all shelves
     textSize(30 * widthRatio);
     fill(0);
-    findAverageTimeNotUpdated();
     text((int) averageTimeNotUpdated, (xPosition + (xWidth / 2)) * widthRatio, (yPosition + (yHeight / 2) + 10) * widthRatio);
   }
 
@@ -49,12 +49,12 @@ class Bookshelf {
         if(map.bookshelfList.get(i).drawingShelves == true){
           break; 
         }
-        else if(i == map.bookshelfList.size() - 1){//
-          if(mousePress == true){
+        else if(i == map.bookshelfList.size() - 1){ // if no shelves are being displayed, it continues. If a shelf is displayed, the forloop breaks.
+          if(mousePress == true){ // if the mouse was pressed, draw the shelves
             this.drawingShelves = true;
           }
-          else if(mousePress == false){
-            info.currentRangeBox = this.bookshelfName;
+          else if(mousePress == false){ // if the mouse is not pressed, but hovered over the Bookshelf, then draw the RangeBox
+            info.currentRangeBox = this.bookshelfName; // Have to do this or else RangeBox is drawn under the Bookshelves. It needs to be drawn after all bookshelves are drawn. //info.drawRangeBox(this); does not work for this reason
           }
         }
       }
@@ -62,9 +62,9 @@ class Bookshelf {
   }
 
   void drawShelves(){
-    background(255, 255, 255);
+    background(255); //Draws a white background to overlap everything currently drawn
     
-    info.drawInstructions(this.drawingShelves);
+    info.drawInstructions(drawingShelves);
     
     for (int x = 0; x < shelfColumns; x++) {
       for (int y = 0; y < shelfRows; y++) {
@@ -72,23 +72,26 @@ class Bookshelf {
           shelves[x][y].lastUpdated();
           shelves[x][y].findShade();
           fill(shelves[x][y].shade);
-          //System.out.println(shelves[x][y].shade);
+          //draws the shelves depending on their x and y values in shelves[][]
           rect((500 + ((1000 / this.shelfColumns) * x)) * widthRatio, ((1000 / this.shelfRows) * y) * heightRatio, (1000 / this.shelfColumns) * widthRatio, (1000 / this.shelfRows) * heightRatio);
-          if(shelves[x][y].shade < 100){
+          
+          if(shelves[x][y].shade < 100){ // if the shade of the bookshelf is lower than 100, so darker than 100, make the text white to make it more visible
             fill(255);
           }
           else{
             fill(0);
           }
+          
           textSize((90/this.shelfColumns) * widthRatio);
-          if(shelves[x][y].timeNotUpdated != 1){ // plural days
+          
+          if(shelves[x][y].timeNotUpdated != 1){ // writes day as plural if the time not updated is not 1
             text("Unsorted for: " + shelves[x][y].timeNotUpdated + " days", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
           }
-          else{
+          else{ // writes day as singular 
             text("Unsorted for: " + shelves[x][y].timeNotUpdated + " day", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
           }
         }
-        else if(shelves[x][y].hasBooks == false){ // if the bookshelf has no books on it then display it as red and do not display when it was sorted last.
+        else if(shelves[x][y].hasBooks == false){ // if the bookshelf has no books on it then display it as light blue and do not display when it was sorted last.
         fill(211, 247, 255);
         rect((500 + ((1000 / this.shelfColumns) * x)) * widthRatio, ((1000 / this.shelfRows) * y) * heightRatio, (1000 / this.shelfColumns) * widthRatio, (1000 / this.shelfRows) * heightRatio);
         fill(0);
@@ -96,39 +99,25 @@ class Bookshelf {
         }
       }
     }
-  
     
-    info.drawRangeBox(this); //Passes in this bookshelf object
+    info.drawRangeBox(this); //Passes in this bookshelf object to draw the bookshelf Name/range
   }
   
-  void findAverageShade(){
+  void findAverageInfo(){
     float totalShade = 0;
     float notEmptyBookshelves = 0;
+    float totalTimeNotUpdated = 0;
     for(int x = 0; x < this.shelfColumns; x++){
       for(int y = 0; y < this.shelfRows; y++){
         if(shelves[x][y].hasBooks == true){
           totalShade += this.shelves[x][y].shade;
+          totalTimeNotUpdated += shelves[x][y].timeNotUpdated;
           notEmptyBookshelves++;
         }
       }
     }
     averageShade = totalShade / notEmptyBookshelves;
-  }
-  
-  void findAverageTimeNotUpdated(){
-    float totalTimeNotUpdated = 0;
-    int notEmptyBookshelves = 0;
-     
-    for(int x = 0; x < this.shelfColumns; x++){
-      for(int y = 0; y < this.shelfRows; y++){
-        if(shelves[x][y].hasBooks == true){
-          totalTimeNotUpdated += shelves[x][y].timeNotUpdated; 
-          notEmptyBookshelves++;
-        }
-      }
-    }
     averageTimeNotUpdated = totalTimeNotUpdated / notEmptyBookshelves;
   }
-  
   
 }

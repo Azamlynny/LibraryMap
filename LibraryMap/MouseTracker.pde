@@ -2,7 +2,7 @@
    azamlynny@hotmail.com
    github.com/Azamlynny
 */
-class mouseTracker{ //handles mouse related functions
+class MouseTracker{ //handles mouse related functions
   
   void checkMousePress(){
     for(int i = 0; i < map.bookshelfList.size(); i++){

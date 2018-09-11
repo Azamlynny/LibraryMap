@@ -37,7 +37,7 @@ void setup(){
 
 void draw(){
   background(255);
-  map.drawMap();
+  map.drawMap(); 
 }
 
 void keyPressed(){

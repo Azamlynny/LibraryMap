@@ -32,7 +32,7 @@ class Map{
   void drawRangeBox(){ //RangeBox is the box that shows the range of books the shelf contains.
     for(int i = 0; i < map.bookshelfList.size(); i++){                    //Draws RangeBox
       if(map.bookshelfList.get(i).bookshelfName == info.currentRangeBox){ //Not in above forloop so that the RangeBox appears above the Bookshelves
-        info.drawRangeBox( map.bookshelfList.get(i)); 
+        info.drawRangeBox(map.bookshelfList.get(i)); 
       } 
     }
   }

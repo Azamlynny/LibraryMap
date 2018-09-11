@@ -43,25 +43,25 @@ class Bookshelf {
   }
 
   void checkHitbox(boolean mousePress){
+    //if the mouse is inside the Bookshelf
     if(mouseX > xPosition * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX > xPosition  * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio){
       for(int i = 0; i < map.bookshelfList.size(); i++){
         if(map.bookshelfList.get(i).drawingShelves == true){
           break; 
         }
-        else if(i == map.bookshelfList.size() - 1){
+        else if(i == map.bookshelfList.size() - 1){//
           if(mousePress == true){
             this.drawingShelves = true;
           }
-          else{
+          else if(mousePress == false){
             info.currentRangeBox = this.bookshelfName;
-            
           }
         }
       }
     }
   }
 
-  void drawShelves() {
+  void drawShelves(){
     background(255, 255, 255);
     
     info.drawInstructions(this.drawingShelves);

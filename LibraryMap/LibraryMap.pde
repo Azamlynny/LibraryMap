@@ -9,12 +9,12 @@ import java.io.*; // for Calendar
 Information info = new Information();
 Map map = new Map();
 KeyTracker keyTracker = new KeyTracker();
+MouseTracker mouseTracker = new MouseTracker();
 
 Calendar calendar = Calendar.getInstance();
 TimeZone tz = TimeZone.getTimeZone("GMT-04");// EST East Coast of America
-
-float originalWidth = 1920; // The program was originally made on a 1920x1080 resolution computer
-float originalHeight = 1080;
+final float originalWidth = 1920; // The program was originally made on a 1920x1080 resolution computer
+final float originalHeight = 1080;
 float newWidth;             // newWidth and newHeight represent the dimensions of the monitor using the program
 float newHeight;
 float widthRatio;           // Every calculation using distance or any size is multiplied by these ratios
@@ -30,14 +30,13 @@ void setup(){
   newWidth = displayWidth;
   newHeight = displayHeight;
   widthRatio = newWidth/originalWidth;
-  heightRatio = newHeight/originalHeight;
+  heightRatio = newHeight/originalHeight;  calendar.setTimeZone(tz); // Changes timezone from GMT to EST
   
   Input inputData = new Input(); // Constructor inputs MapData.txt and makes objects from it
 }
 
 void draw(){
   background(255);
-  
   map.drawMap();
 }
 
@@ -50,15 +49,7 @@ void keyReleased(){ // keyReleased() is used so that buttons may be held down an
 }
 
 void mousePressed(){
-  for(int i = 0; i < map.bookshelfList.size(); i++){
-    map.bookshelfList.get(i).checkHitbox(true); // drawingShelves must be false 
-  }
-  
-  for(int i = 0; i < map.bookshelfList.size(); i++){
-    if(mouseX > (500 * widthRatio) && mouseX < (1500 * heightRatio)){
-      map.bookshelfList.get(i).shelves[(int) ((map.bookshelfList.get(i).shelfColumns * (mouseX - (500 * widthRatio))) / (1000 * widthRatio)) ][(int) ((map.bookshelfList.get(i).shelfRows * (mouseY)) / (1000 * heightRatio))].checkHitbox(i);
-    }
-  }
+  mouseTracker.checkMousePress();
 }
 
 void exit() { 

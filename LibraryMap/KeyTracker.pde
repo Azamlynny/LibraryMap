@@ -2,7 +2,7 @@
    azamlynny@hotmail.com
    github.com/Azamlynny
 */
-class KeyTracker{
+class KeyTracker{ //Handles key related functions
   
   void checkKeyPress(){
     if(key == 'q'){

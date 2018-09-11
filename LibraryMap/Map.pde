@@ -3,10 +3,32 @@
    github.com/Azamlynny
 */
 class Map{
+  final float originalWidth = 1920; // The program was originally made on a 1920x1080 resolution computer
+  final float originalHeight = 1080;
+  float newWidth;                   // newWidth and newHeight represent the dimensions of the monitor using the program
+  float newHeight;
+  float resolutionWidthRatio;
+  float resolutionHeightRatio;
+  float widthRatio;                 // Every calculation using distance or any size is multiplied by these ratios
+  float heightRatio;
+  float scrollScale = 1;
+  int xShift = 0;
+  int yShift = 0;
+  
+  public Map(){
+    newWidth = displayWidth;
+    newHeight = displayHeight;
+    resolutionWidthRatio = newWidth/originalWidth;
+    resolutionHeightRatio = newHeight/originalHeight; 
+    
+    this.findDrawRatio();
+  }
   
   List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
   
   void drawMap(){
+    translate(xShift, yShift);
+    
     this.drawInformation();
   
     this.drawObjects();
@@ -40,6 +62,11 @@ class Map{
   void drawInformation(){
     info.drawOrientationInfo();
     info.drawInstructions(false); 
+  }
+  
+  void findDrawRatio(){
+    widthRatio = resolutionWidthRatio * scrollScale;
+    heightRatio = resolutionHeightRatio * scrollScale;
   }
   
 }

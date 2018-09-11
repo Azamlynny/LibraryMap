@@ -3,8 +3,20 @@
    github.com/Azamlynny
 */
 class Map{
-  
+  final float originalWidth = 1920; // The program was originally made on a 1920x1080 resolution computer
+  final float originalHeight = 1080;
+  float newWidth;             // newWidth and newHeight represent the dimensions of the monitor using the program
+  float newHeight;
+  float widthRatio;           // Every calculation using distance or any size is multiplied by these ratios
+  float heightRatio;
   List<Bookshelf> bookshelfList = new ArrayList<Bookshelf>();
+  
+  public Map(){
+    newWidth = displayWidth;
+    newHeight = displayHeight;
+    widthRatio = newWidth/originalWidth;
+    heightRatio = newHeight/originalHeight; 
+  }
   
   void drawMap(){
     this.drawInformation();

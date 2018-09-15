@@ -45,7 +45,8 @@ void mousePressed(){
 }
 
 void exit() { 
-  Output output = new Output("MapData.txt"); //Constructor outputs the objects data to MapData.txt, which will be in the same directory as the program.
+  Output output = new Output(); //Constructor outputs the objects data to MapData.txt, which will be in the same directory as the program.
+  output.outputFile("MapData.txt");
   
   System.exit(0); //Makes sure the file closes because otherwise it will run in the background and create lag on the computer
 } 

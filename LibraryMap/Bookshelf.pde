@@ -34,17 +34,17 @@ class Bookshelf {
     findAverageInfo(); //Findes averageSahde and averageTimeNotUpdated
     // for finding the color and the drawing of the bookshelf depending on the average shade of all shelves
     fill(averageShade);
-    rect(this.xPosition * widthRatio, this.yPosition * heightRatio, this.xWidth * widthRatio, this.yHeight * heightRatio);
+    rect(this.xPosition * map.widthRatio, this.yPosition * map.heightRatio, this.xWidth * map.widthRatio, this.yHeight * map.heightRatio);
     
     //For the number that displays on the bookshelf showing the average time not sorted of all shelves
-    textSize(30 * widthRatio);
+    textSize(30 * map.widthRatio);
     fill(0);
-    text((int) averageTimeNotUpdated, (xPosition + (xWidth / 2)) * widthRatio, (yPosition + (yHeight / 2) + 10) * widthRatio);
+    text((int) averageTimeNotUpdated, (xPosition + (xWidth / 2)) * map.widthRatio, (yPosition + (yHeight / 2) + 10) * map.widthRatio);
   }
 
   void checkHitbox(boolean mousePress){
     //if the mouse is inside the Bookshelf
-    if(mouseX > xPosition * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY > yPosition * heightRatio && mouseY < (yPosition + yHeight) * heightRatio || mouseX > xPosition  * widthRatio && mouseX < (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio || mouseX < xPosition * widthRatio && mouseX > (xPosition + xWidth) * widthRatio && mouseY < yPosition * heightRatio && mouseY > (yPosition + yHeight) * heightRatio){
+    if(mouseX > xPosition * map.widthRatio && mouseX < (xPosition + xWidth) * map.widthRatio && mouseY > yPosition * map.heightRatio && mouseY < (yPosition + yHeight) * map.heightRatio || mouseX < xPosition * map.widthRatio && mouseX > (xPosition + xWidth) * map.widthRatio && mouseY > yPosition * map.heightRatio && mouseY < (yPosition + yHeight) * map.heightRatio || mouseX > xPosition  * map.widthRatio && mouseX < (xPosition + xWidth) * map.widthRatio && mouseY < yPosition * map.heightRatio && mouseY > (yPosition + yHeight) * map.heightRatio || mouseX < xPosition * map.widthRatio && mouseX > (xPosition + xWidth) * map.widthRatio && mouseY < yPosition * map.heightRatio && mouseY > (yPosition + yHeight) * map.heightRatio){
       for(int i = 0; i < map.bookshelfList.size(); i++){
         if(map.bookshelfList.get(i).drawingShelves == true){
           break; 
@@ -73,7 +73,7 @@ class Bookshelf {
           shelves[x][y].findShade();
           fill(shelves[x][y].shade);
           //draws the shelves depending on their x and y values in shelves[][]
-          rect((500 + ((1000 / this.shelfColumns) * x)) * widthRatio, ((1000 / this.shelfRows) * y) * heightRatio, (1000 / this.shelfColumns) * widthRatio, (1000 / this.shelfRows) * heightRatio);
+          rect((500 + ((1000 / this.shelfColumns) * x)) * map.widthRatio, ((1000 / this.shelfRows) * y) * map.heightRatio, (1000 / this.shelfColumns) * map.widthRatio, (1000 / this.shelfRows) * map.heightRatio);
           
           if(shelves[x][y].shade < 100){ // if the shade of the bookshelf is lower than 100, so darker than 100, make the text white to make it more visible
             fill(255);
@@ -82,20 +82,20 @@ class Bookshelf {
             fill(0);
           }
           
-          textSize((90/this.shelfColumns) * widthRatio);
+          textSize((90/this.shelfColumns) * map.widthRatio);
           
           if(shelves[x][y].timeNotUpdated != 1){ // writes day as plural if the time not updated is not 1
-            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " days", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
+            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " days", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * map.widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * map.heightRatio);
           }
           else{ // writes day as singular 
-            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " day", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
+            text("Unsorted for: " + shelves[x][y].timeNotUpdated + " day", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * map.widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * map.heightRatio);
           }
         }
         else if(shelves[x][y].hasBooks == false){ // if the bookshelf has no books on it then display it as light blue and do not display when it was sorted last.
         fill(211, 247, 255);
-        rect((500 + ((1000 / this.shelfColumns) * x)) * widthRatio, ((1000 / this.shelfRows) * y) * heightRatio, (1000 / this.shelfColumns) * widthRatio, (1000 / this.shelfRows) * heightRatio);
+        rect((500 + ((1000 / this.shelfColumns) * x)) * map.widthRatio, ((1000 / this.shelfRows) * y) * map.heightRatio, (1000 / this.shelfColumns) * map.widthRatio, (1000 / this.shelfRows) * map.heightRatio);
         fill(0);
-        text("Empty Shelf", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * heightRatio);
+        text("Empty Shelf", (500 + ((1000 / this.shelfColumns) * x) + ((1000 / this.shelfColumns) / 2)) * map.widthRatio, (((1000 / this.shelfRows) * y) + ((1000 / this.shelfRows) / 2)) * map.heightRatio);
         }
       }
     }

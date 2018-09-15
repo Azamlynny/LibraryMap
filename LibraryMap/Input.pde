@@ -5,7 +5,11 @@
 class Input{//This is to organize the code which inputs MapData.txt
   
   public Input(){
-    String line = null;
+   
+  }
+  
+  void inputFile(){
+     String line = null;
     BufferedReader input = null;
      
     try{ 

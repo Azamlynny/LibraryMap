@@ -13,7 +13,7 @@ class Input{//This is to organize the code which inputs MapData.txt
     BufferedReader input = null;
      
     try{ 
-      input = new BufferedReader(new FileReader("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt")); // This is for my computer to access MapData.txt
+      input = new BufferedReader(new FileReader("C:/Users/Adam/workspace/library-map/LibraryMap/Map/MapData.txt")); // This is for my computer to access MapData.txt
       //C:/Users/Public05/Documents/Processing/Library_Map/application.windows64/MapData.txt = directory for the library's computer
       //input = new BufferedReader(new FileReader("MapData.txt")); // This is so the library computer can access MapData.txt
 

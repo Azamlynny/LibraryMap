@@ -46,7 +46,7 @@ void mousePressed(){
 
 void exit() { 
   Output output = new Output(); //Constructor outputs the objects data to MapData.txt, which will be in the same directory as the program.
-  output.outputFile("C:/Users/Adam/Documents/Processing/LibraryMap/LibraryMap/MapData.txt");
+  output.outputFile("C:/Users/Adam/workspace/library-map/LibraryMap/Map/MapData.txt");
   
   System.exit(0); //Makes sure the file closes because otherwise it will run in the background and create lag on the computer
 } 

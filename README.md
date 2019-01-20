@@ -1,9 +1,9 @@
 # Library Map
-Software for the Clark Public Library for volunteers to be able to track which bookshelves have been sorted recently and which ones have not.
-This is so that a volunteers do not sort a recently sorted bookshelf when there are others to be sorted first.
+Software for the Clark Public Library for volunteers to be able to track which bookshelves have been sorted recently and which ones have not. This fixes the problem of volunteers not knowing which bookshelves have been sorted yet or not so that someone does not accidentally sort a bookshelf that was recently sorted.
 
-Created by Adam Zamlynny
+
+
+### Contact Information
+If there are any questions or problems then please contact [Adam Zamlynny](https://github.com/Azamlynny).
 
 azamlynny@hotmail.com
-
-github.com/azamlynny

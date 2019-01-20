@@ -29,11 +29,11 @@ class Information{//This is to organize text which tells Instructions or Informa
     }
     else if(shelvesDrawn == false){
       textSize(40 * map.widthRatio);
-      text("Instructions:", 50 * map.widthRatio, 880 * map.heightRatio);
+      text("Instructions:", 50 * map.widthRatio, 910 * map.heightRatio);
       textSize(30 * map.widthRatio);
-      text("Click on a bookshelf to see each individual shelf and when it was last sorted.", 50 * map.widthRatio, 920 * map.heightRatio);
+      text("Click on a bookshelf to see each individual shelf and when it was last sorted.", 50 * map.widthRatio, 950 * map.heightRatio);
       textSize(25 * map.widthRatio);
-      text("The number displayed on a bookshelf is the average amount of days when the shelves on it were last sorted", 50 * map.widthRatio, 960 * map.heightRatio);
+      text("The number displayed on a bookshelf is the average number of days when the shelves on it were last sorted", 50 * map.widthRatio, 990 * map.heightRatio);
     }
     textAlign(CENTER); // The numbers on Bookshelves and Shelves are centered
   }

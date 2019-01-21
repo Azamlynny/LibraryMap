@@ -17,5 +17,3 @@ By clicking on a bookshelf, each individual shelf could be seen. The shelves sho
 
 ### Contact Information
 If there are any questions or problems then please contact [Adam Zamlynny](https://github.com/Azamlynny).
-
-azamlynny@hotmail.com
